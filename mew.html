@@ -1,1 +1,68 @@
-
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>喵颖大王，生日快乐！</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="birthday-card">
+            <div class="balloons">
+                <div class="balloon"></div>
+                <div class="balloon"></div>
+                <div class="balloon"></div>
+            </div>
+            <div class="cake">
+                <div class="plate"></div>
+                <div class="layer"></div>
+                <div class="icing"></div>
+                <div class="candle">
+                    <div class="flame"></div>
+                </div>
+            </div>
+            <div class="text">
+                <h1><span id="recipientName"></span>喵颖大王，生日快乐！</h1>
+                <div id="message"></div>
+                <p class="sender"><span id="senderName"></span></p>
+            </div>
+        </div>
+    </div>
+    <script>
+        // 获取URL参数并填充内容
+        const params = new URLSearchParams(window.location.search);
+        document.getElementById('recipientName').textContent = params.get('to') || '';
+        document.getElementById('senderName').textContent = params.get('from') || '';
+        document.getElementById('message').innerHTML = (params.get('msg') || '').replace(/\n/g, '<br>');
+        
+        // 设置主题色
+        const theme = params.get('theme') || 'pink';
+        const themeColors = {
+            pink: ['#ff9a9e', '#fad0c4'],
+            blue: ['#4facfe', '#00f2fe'],
+            purple: ['#a18cd1', '#fbc2eb']
+        };
+        
+        document.body.style.background = `linear-gradient(45deg, ${themeColors[theme][0]}, ${themeColors[theme][1]})`;
+        
+        // 添加访问统计
+        function recordVisit() {
+            const visitData = {
+                pageId: params.get('id'),
+                timestamp: new Date().toISOString(),
+                recipient: params.get('to'),
+                sender: params.get('from')
+            };
+            
+            // 可以使用免费的统计服务，如 Google Analytics 或百度统计
+            // 这里使用 localStorage 做简单演示
+            const visits = JSON.parse(localStorage.getItem('birthday_visits') || '[]');
+            visits.push(visitData);
+            localStorage.setItem('birthday_visits', JSON.stringify(visits));
+        }
+        
+        recordVisit();
+    </script>
+</body>
+</html> 
