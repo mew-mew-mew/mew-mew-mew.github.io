@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生日祝福生成器</title>
+    <link rel="stylesheet" href="generator.css">
+</head>
+<body>
+    <div class="generator-container">
+        <div class="generator-form">
+            <h1>创建生日祝福</h1>
+            <form id="birthdayForm">
+                <div class="form-group">
+                    <label for="recipientName">收礼人姓名</label>
+                    <input type="text" id="recipientName" required placeholder="请输入收礼人姓名">
+                </div>
+                <div class="form-group">
+                    <label for="senderName">送礼人姓名</label>
+                    <input type="text" id="senderName" required placeholder="请输入送礼人姓名">
+                </div>
+                <div class="form-group">
+                    <label for="message">祝福语</label>
+                    <textarea id="message" rows="4" placeholder="写下您的祝福语..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="theme">选择主题色</label>
+                    <select id="theme">
+                        <option value="pink">粉色</option>
+                        <option value="blue">蓝色</option>
+                        <option value="purple">紫色</option>
+                    </select>
+                </div>
+                <button type="submit">生成祝福页面</button>
+            </form>
+        </div>
+    </div>
+    <script src="generator.js"></script>
+</body>
+</html> 
